@@ -1,0 +1,12 @@
+version: '3'
+services:
+  airflow:
+    build: .
+    container_name: airflow_container
+    ports:
+      - "8080:8080"
+    environment:
+      - AIRFLOW_HOME=/app/airflow
+    volumes:
+      - .:/app
+    command: bash -c "airflow db init && airflow webserver & airflow scheduler"
